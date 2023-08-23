@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointmets</title>
+  <style>
+    .container {
+      width: 90%; /* Changed to 90% as you have it set in the inline style as well */
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px; /* Moved to the main container's style */
+    }
+  </style>
+  <!-- Use Bootstrap 5.3.0, as mentioned in the code -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <!-- Use a Thymeleaf loop to iterate over departments -->
+  <div class="card" style="width: 18rem;" th:each="appointment : ${appointments}">
+    <div class="card-body">
+      <!-- Use Thymeleaf text attribute to set the title -->
+      <h2 class="card-title" style="text-align: center" th:text="${appointment.time}">Appointment</h2>
+
+      <!-- Use Thymeleaf URL attribute for the department details link -->
+      <a th:href="@{/appointments/{appointmentId}/AppointmentById(appointmentId=${appointment.getId()})}">
+        <!-- Add link content here if needed -->
+      </a>
+
+      <div class="card-body">
+        <!-- Use Thymeleaf text attribute for the title again -->
+        <h5 class="card-title" style="mso-field-change-time: center" th:time="${appointment.time}">Appointment</h5>
+
+        <div style="display:flex;justify-content: space-between">
+          <!-- Use Thymeleaf URL attribute for the update link -->
+          <a th:href="@{/appointments/update/{appointmentId}(appointmentId=${appointment.getId()})}">
+            <button style="width: 100px" class="btn btn-primary" type="button">update</button>
+          </a>
+
+          <!-- Use Thymeleaf URL attribute for the delete link -->
+          <a th:href="@{/appointments/delete/{appointmentId}(appointmentId=${appointment.getId()})}">
+            <button style="width: 100px" class="btn btn-danger" type="button">delete</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<p style="text-align:center;">
+  <!-- Use Thymeleaf URL attribute for the "Add new Department" link -->
+  <a class="btn btn-outline-primary" role="button" th:href="@{/appointments/create}">Add new Appointment</a>
+</p>
+</body>
+<!-- Use Bootstrap 5.3.0 JavaScript bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</html>
