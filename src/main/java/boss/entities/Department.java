@@ -40,7 +40,14 @@ public class Department {
     },fetch = FetchType.EAGER)
     private List<Doctor> doctors;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER,cascade = {REFRESH,MERGE,PERSIST,DETACH})
     private Hospital hospital;
+
+    @Override
+    public String toString() {
+        return " \nDepartment " +
+                "\n" + name;
+    }
 
 }

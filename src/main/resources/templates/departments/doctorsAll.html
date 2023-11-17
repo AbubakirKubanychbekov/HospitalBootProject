@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Doctors</title>
+    <style>
+        /* Custom styles for the background */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://avatars.mds.yandex.net/i?id=b49f0e3573307646fd4c3f85930bddebec9bd62e-9702242-images-thumbs&n=13'); /* Replace with your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>All Doctors</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Position</th>
+        </tr>
+        <tr th:each="doctor: ${allDoctor}">
+            <td th:text="${doctor.id}">id</td>
+            <td th:text="${doctor.firstName}">First Name</td>
+            <td th:text="${doctor.lastName}">Last Name</td>
+            <td th:text="${doctor.getPosition()}">Position</td>
+            <td th:text="${doctor.email}">Email</td>
+            <td th:text="${doctor.getImage()}">Image</td>
+
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

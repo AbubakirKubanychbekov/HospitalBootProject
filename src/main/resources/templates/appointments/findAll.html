@@ -2,14 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Appointmets</title>
+  <title>Appointments</title>
   <style>
     .container {
-      width: 90%; /* Changed to 90% as you have it set in the inline style as well */
+      width: 90%;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 15px; /* Moved to the main container's style */
+      gap: 15px;
+    }
+    .card {
+      width: 18rem;
+    }
+    .card-title {
+      text-align: center;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 100px;
+    }
+    p {
+      text-align: center;
     }
   </style>
   <!-- Use Bootstrap 5.3.0, as mentioned in the code -->
@@ -19,30 +35,29 @@
 </head>
 <body>
 <div class="container">
-  <!-- Use a Thymeleaf loop to iterate over departments -->
-  <div class="card" style="width: 18rem;" th:each="appointment : ${appointments}">
+  <!-- Use a Thymeleaf loop to iterate over appointments -->
+  <div class="card" th:each="appointment : ${appointments}">
     <div class="card-body">
-      <!-- Use Thymeleaf text attribute to set the title -->
-      <h2 class="card-title" style="text-align: center" th:text="${appointment.time}">Appointment</h2>
+      <h2 class="card-title" th:text="${appointment.getTime()}">Appointment</h2>
+      <h2 class="card-title" th:text="${appointment.getPatient()}">Patient</h2>
+      <h2 class="card-title" th:text="${appointment.getDoctor()}">Doctor</h2>
 
-      <!-- Use Thymeleaf URL attribute for the department details link -->
+      <!-- Use Thymeleaf URL attribute for the appointment details link -->
       <a th:href="@{/appointments/{appointmentId}/AppointmentById(appointmentId=${appointment.getId()})}">
         <!-- Add link content here if needed -->
       </a>
 
       <div class="card-body">
-        <!-- Use Thymeleaf text attribute for the title again -->
-        <h5 class="card-title" style="mso-field-change-time: center" th:time="${appointment.time}">Appointment</h5>
-
-        <div style="display:flex;justify-content: space-between">
+        <h5 class="card-title" th:text="${appointment.getTime()}">Appointment</h5>
+        <div class="btn-container">
           <!-- Use Thymeleaf URL attribute for the update link -->
           <a th:href="@{/appointments/update/{appointmentId}(appointmentId=${appointment.getId()})}">
-            <button style="width: 100px" class="btn btn-primary" type="button">update</button>
+            <button class="btn btn-primary" type="button">Update</button>
           </a>
 
           <!-- Use Thymeleaf URL attribute for the delete link -->
           <a th:href="@{/appointments/delete/{appointmentId}(appointmentId=${appointment.getId()})}">
-            <button style="width: 100px" class="btn btn-danger" type="button">delete</button>
+            <button class="btn btn-danger" type="button">Delete</button>
           </a>
         </div>
       </div>
@@ -51,8 +66,8 @@
 </div>
 <br>
 <br>
-<p style="text-align:center;">
-  <!-- Use Thymeleaf URL attribute for the "Add new Department" link -->
+<p>
+  <!-- Use Thymeleaf URL attribute for the "Add new Appointment" link -->
   <a class="btn btn-outline-primary" role="button" th:href="@{/appointments/create}">Add new Appointment</a>
 </p>
 </body>

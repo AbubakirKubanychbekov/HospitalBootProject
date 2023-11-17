@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctors in Department</title>
+</head>
+<body style="background-color: yellowgreen;">
+<center>
+<h1>Doctors in Department</h1>
+</center>
+
+<center>
+  <ul>
+    <li th:each="doctor : ${doctors}">
+      <p th:text="${doctor.firstName}"></p>
+      <p th:text="${doctor.lastName}"></p>
+      <p th:text="${doctor.position}"></p>
+      <p th:text="${doctor.email}"></p>
+      <img th:src="${doctor.image}" alt="Doctor Image">
+    </li>
+  </ul>
+</center>
+
+<a th:href="@{'/departments/' + 'assign/' + ${departmentId}}">
+  <button class="btn btn-danger" type="button">Assign</button>
+</a>
+<a class="btn btn-outline-primary" th:href="@{/departments}" role="button">Go Back</a>
+</body>
+</html>

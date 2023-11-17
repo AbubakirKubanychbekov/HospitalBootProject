@@ -8,7 +8,7 @@ public class HospitalBtaskApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HospitalBtaskApplication.class, args);
-        System.out.println("Started your application");
+        System.out.println("Boss your code successfully working...");
     }
 
 }

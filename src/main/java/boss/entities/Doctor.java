@@ -32,6 +32,10 @@ public class Doctor {
     private String position;
     private String email;
 
+    @Column(length = 500)
+    private String image;
+
+
     @ManyToOne
     private Hospital hospital;
 
@@ -42,4 +46,12 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Appointment>appointments;
 
+    @Override
+    public String toString() {
+        return " Doctor" +
+                "\n" + firstName +
+                "\n" + lastName +
+                "\n" + position +
+                "\n" + email;
+    }
 }

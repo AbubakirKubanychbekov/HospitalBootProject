@@ -55,4 +55,14 @@ public class HospitalApi {
         hospitalService.deleteById(hospitalId);
         return "redirect:/hospitals";
    }
+
+   @GetMapping("/search")
+    public String searchHospital(Model model,
+                                 @RequestParam (required = false) String name,
+                                 @RequestParam (required = false) String address){
+        model.addAttribute("name",name);
+        model.addAttribute("address",address);
+        model.addAttribute("hospitals",hospitalService.getAllHospitalList(name,address));
+        return "findAll";
+   }
 }

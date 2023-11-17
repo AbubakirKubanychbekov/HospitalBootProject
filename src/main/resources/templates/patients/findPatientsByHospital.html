@@ -9,56 +9,98 @@
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+      justify-content: space-around;
+      width: 800px;
+      margin: 40px 0 40px 250px;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 250px;
+      padding: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-container {
+      width: 18rem;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      width: 223px;
+      height: 170px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card-title {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .btn {
+      width: 100px;
     }
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
         crossorigin="anonymous">
-
-  <div style="text-align:center">
-    <form th:action=" @{/patients}" method="get"
-          style="display:flex; gap: 10px;  justify-content: space-around;width: 800px; margin: 40px 0 40px 250px;  align-items: center">
-      <input style="width: 250px" type="text" name="word" placeholder="Search ..." th:value="${word}"/>
-      <button type="submit">Search</button>
-      <button type="submit">Clear</button>
-    </form>
-  </div>
-
 </head>
-<body>
+<body style="background-color: lightgoldenrodyellow;">
 
-<div class="container" style="width: 90%; margin: 0 auto; display: flex; gap: 15px">
-
-  <div class="card" style="width: 18rem;" th:each="patient:${patients}">
-    <a th:href="@{/patients/{patientId}/PatientById(patientId=${patient.getId()})}">
-      <!--            <img th:src="${hospital.getImage()}" object-fit width="223" height="170px" class="card-img-top"-->
-<!--      alt="Hospital image">-->
-      <!--      <img th:each="image : ${hospital.images}" th:src="${image}" object-fit width="223" height="170px" class="card-img-top" alt="Company's Image">-->
-
+<div style="text-align: center">
+  <form th:action="@{/patients/search}" method="get"
+        class="search-form">
+    <input style="width: 250px" type="text" name="firstName" placeholder="Search ..." th:value="${firstName}" />
+    <button type="submit">Search</button>
+    <a th:href="@{/patients/{hospitalId} (hospitalId=${hospitalId})}">
+      <button type="button">Clear</button>
     </a>
+  </form>
+</div>
 
-    <div class="card-body">
-      <h5 class="card-title" style="text-align: center" th:text="${patient.firstName}">Patient</h5>
-      <!--            <p class="card-text" style="text-align: center" th:text="${}">Address</p>-->
-
-
-      <div style="display:flex;justify-content: space-between">
-        <a th:href="@{/patients/update/{patientId}(patientId=${patient.getId()})}">
-          <button style="width: 100px" class="btn btn-primary" type="submit">UPDATE</button>
-
-        </a>
-
-        <a th:href="@{'/patients/'+ ${hospitalId} +'/delete/' + ${patient.getId()}}">
-          <button style="width: 100px" class="btn btn-danger" type="submit">DELETE</button>
-        </a>
-
-
-        <!--                <a th:href="@{/departments/create/{hospitalId} (hospitalId=${hospital.id})}">-->
-        <!--                    <button style="width: 125px" class="btn btn-danger" type="submit">Departments</button>-->
-        <!--                </a>-->
-
-
-
+<div class="container" style="width: 90%; margin: 0 auto; gap: 15px">
+  <div class="card-container" th:each="patient:${patients}">
+    <div class="card">
+      <a th:href="@{/patients/{patientId}/PatientById(patientId=${patient.getId()})}">
+        <img th:src="${patient.getImage()}" class="card-img-top" alt="Patient image">
+      </a>
+      <div class="card-body">
+        <h1 class="card-title" th:text="${patient.firstName}">Patient</h1>
+        <h2 class="card-title" th:text="${patient.lastName}">Patient</h2>
+        <h3 class="card-title" th:text="${patient.phoneNumber}">Patient</h3>
+        <h4 class="card-title" th:text="${patient.gender}">Patient</h4>
+        <h5 class="card-title" th:text="${patient.email}">Patient</h5>
+        <div class="btn-container">
+          <a th:href="@{/patients/update/{patientId}(patientId=${patient.getId()})}">
+            <button class="btn btn-primary" style="width: 100px" type="submit">UPDATE</button>
+          </a>
+          <a th:href="@{'/patients/'+ ${hospitalId} +'/delete/' + ${patient.getId()}}">
+            <button class="btn btn-danger" style="width: 100px" type="submit">DELETE</button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -66,9 +108,11 @@
 <br>
 <br>
 <p style="text-align:center;">
-  <a class="btn btn-outline-primary" role="button" th:href="@{/patients/create/{hospitalId}(hospitalId=${hospitalId})}">Add new Patient</a></p>
+  <a class="btn btn-outline-primary" role="button" th:href="@{/patients/create/{hospitalId}(hospitalId=${hospitalId})}">Add new Patient</a>
+</p>
 <p style="text-align:center;">
-  <a class="btn btn-outline-primary" role="button" th:href="@{/hospitals}">Go Back</a></p>
+  <a class="btn btn-outline-primary" role="button" th:href="@{/hospitals}">Go Back</a>
+</p>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

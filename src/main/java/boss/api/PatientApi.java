@@ -80,4 +80,13 @@ public class PatientApi {
         return "redirect:/patients/"+hospitalId;
     }
 
+    @GetMapping("/search")
+    public String searchPatients(@RequestParam("firstName") String firstName, Model model) {
+        List<Patient> patients = patientService.searchPatientsByName(firstName);
+        model.addAttribute("patients", patients);
+        model.addAttribute("firstName", firstName);
+        return "patients/findPatientsByHospital";
+    }
+
+
 }

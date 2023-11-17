@@ -2,7 +2,10 @@ package boss.entities;
 
 import boss.enums.Gender;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -49,6 +52,9 @@ public class Patient {
     @Size(max = 100,message = "Email column size few character")
     private String email;
 
+    @Column(length = 500)
+    private String image;
+
     @ManyToOne
     private Hospital hospital;
 
@@ -62,5 +68,16 @@ public class Patient {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.email = email;
+
+    }
+
+    @Override
+    public String toString() {
+        return " \nPatient " +
+                "\n'" + firstName + '\'' +
+                "\n'" + lastName + '\'' +
+                "\n'" + phoneNumber + '\'' +
+                "\n'" + gender +
+                "\n'" + email + '\'' ;
     }
 }

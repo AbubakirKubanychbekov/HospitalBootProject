@@ -6,6 +6,8 @@ import boss.enums.Gender;
 import boss.exception.MyException;
 import boss.repositories.HospitalRepo;
 import boss.repositories.PatientRepo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,9 @@ public class PatientService {
 
     private final PatientRepo patientRepo;
     private final HospitalRepo hospitalRepo;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
 
@@ -68,5 +73,14 @@ public class PatientService {
         hospital.getPatients().remove(patient);
         patientRepo.deleteById(patientId);
 
+    }
+
+    public List<Patient> findAll() {
+        return patientRepo.findAll();
+    }
+
+    public List<Patient> searchPatientsByName(String firstName) {
+        return entityManager.createQuery("select p from Patient p where p.firstName= :firstName", Patient.class)
+                .setParameter("firstName",firstName).getResultList();
     }
 }

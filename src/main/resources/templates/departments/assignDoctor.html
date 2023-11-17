@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #3498db; /* Blue border */
+            border-radius: 10px;
+            background-color: #ffffff; /* White background */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c3e50; /* Dark gray label text */
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #2980b9; /* Dark blue heading */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #27ae60; /* Green button background */
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218c54; /* Darker green on hover */
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+
+</head>
+<body>
+<form th:action="@{/departments/accept/{departmentId}(departmentId=${departmentId})}" method="post">
+
+    <input type="hidden" name="departmentId" value="{departmentId}"/>
+    <div class="form-group">
+        <label for="doctorId" style="font-weight: bold; font-size: 18px;">Assign Doctor to Department</label>
+        <select id="doctorId" name="doctorId"
+                style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="">--Select a doctor--</option>
+            <option th:each="doctor : ${doctors}" th:value="${doctor.getId()}"
+                    th:text="${doctor.firstName+ ' ' + doctor.lastName}" style="font-size: 16px;"></option>
+        </select>
+    </div>
+    <button type="submit">Assign</button>
+</form>
+
+<center>
+<h1>All Doctors</h1>
+</center>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Position</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doctor: ${doctors}">
+        <td th:text="${doctor.getId()}">id</td>
+        <td th:text="${doctor.getFirstName()}">First Name</td>
+        <td th:text="${doctor.getLastName()}">Last Name</td>
+        <td th:text="${doctor.getPosition()}">Position</td>
+        <td th:text="${doctor.getEmail()}">Email</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{'/departments/' + 'assign/' + ${departmentId}}">
+    <button class="btn btn-danger" type="button">Assign</button>
+</a>
+<form>
+<p style="text-align:center;">
+    <a class="btn btn-outline-primary" role="button" th:href="@{/departments}">Go Back</a></p>
+</form>
+
+
+</body>
+</html>

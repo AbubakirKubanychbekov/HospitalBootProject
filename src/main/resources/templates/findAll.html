@@ -8,78 +8,52 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
 
-
-<!--    <style>-->
-<!--        body {-->
-<!--            background-color: #6947ff;-->
-<!--            background-image: url('https://thumbs.dreamstime.com/z/%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D1%8B-%D0%B7%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8-%D0%B8-%D1%88%D0%B0%D1%80%D0%B0-%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9-102527517.jpg');-->
-<!--            background-size: contain;-->
-<!--            background-repeat: no-repeat;-->
-<!--            background-attachment: fixed;-->
-<!--            background-position: right;-->
-<!--        }-->
-
-<!--         {-->
-<!--            max-width: 120px;-->
-<!--            margin: 0 auto;-->
-<!--            padding: 20px;-->
-<!--            background-color: rgba(155, 155, 155, 0.8);-->
-<!--            border-radius: 10px;-->
-<!--            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);-->
-<!--        }-->
-<!--        {-->
-<!--            display: flex;-->
-<!--            justify-content: space-between;-->
-<!--            margin-top: 20px;-->
-<!--        }-->
-<!--    </style>-->
-
-<!--    <style>-->
-<!--        .container {-->
-<!--            width: 80%;-->
-<!--            margin: 0 auto;-->
-<!--            display: flex;-->
-<!--            flex-wrap: wrap;-->
-<!--        }-->
-<!--    </style>-->
-
     <style>
-        /* Общий стиль для заднего фона */
+        /* Background style */
         body {
-            background-image: url(https://thumbs.dreamstime.com/z/%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D1%8B-%D0%B7%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8-%D0%B8-%D1%88%D0%B0%D1%80%D0%B0-%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9-102527517.jpg);
-            background-size: contain; /* Растянуть изображение на всю область */
-            background-repeat: no-repeat; /* Запретить повторение изображения */
-            background-position: right;
+            background-image: url('https://thumbs.dreamstime.com/z/%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D1%8B-%D0%B7%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8-%D0%B8-%D1%88%D0%B0%D1%80%D0%B0-%D1%81%D1%82%D0%B0%D1%80%D1%8B%D0%B9-102527517.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /* Устанавливаем шрифт для текста */
+            color: #fff; /* Устанавливаем цвет текста на фоне */
         }
 
-        /* Стиль для контейнера карточек */
+        /* Container for cards */
         .container-card {
             width: 80%;
             margin: 0 auto;
-            background-color: rgba(141, 62, 62, 0.8); /* Полупрозрачный белый фон */
+            background-color: rgba(0, 0, 0, 0.6); /* Чуть более прозрачный черный фон */
             padding: 20px;
             border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
         }
 
-        /* Анимация при наведении на карточку */
+        /* Hover animation for cards */
         .card:hover {
             transform: scale(1.05);
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Стили для анимированных кнопок */
+        /* Styling for animated buttons */
         .btn-animated {
-            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Анимация трансформации и цвета фона */
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
             border: none;
-            margin-right: 10px; /* Пространство между кнопками */
+            margin-right: 10px;
         }
 
-        /* Стиль при наведении на кнопку */
+        /* Button hover effect */
         .btn-animated:hover {
-            transform: scale(1.05); /* Увеличение размера кнопки при наведении */
+            transform: scale(1.10);
         }
 
-        /* Уникальные цвета для кнопок */
+        /* Custom button colors */
         .btn-danger {
             background-color: #dc3545;
             color: #fff;
@@ -89,121 +63,110 @@
             background-color: #007bff;
             color: #fff;
         }
-        .btn-primary {
-            background-color: #3e148f;
-            color: #fff;
-        }
-        .btn-primary {
-            background-color: #afbb43;
-            color: #fff;
-        }
-        .btn-primary {
-            background-color: #13e8cf;
-            color: #fff;
+
+        /* Add more custom button styles here */
+
+        /* Style for the search form */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            justify-content: space-around;
+            width: 800px;
+            margin: 40px auto;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 5px;
         }
 
-        /* Добавьте остальные цвета для остальных кнопок */
+        .search-input {
+            width: 250px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the "Add new hospital" button */
+        .add-hospital-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
     </style>
-
-
-
-
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-          crossorigin="anonymous">
-
-    <div style="text-align:center">
-        <form th:action=" @{/hospitals}" method="get"
-              style="display:flex; gap: 10px;  justify-content: space-around;width: 800px; margin: 40px 0 40px 250px;  align-items: center">
-            <input style="width: 250px" type="text" name="word" placeholder="Search ..." th:value="${word}"/>
-            <input type="text" name="address" placeholder="Address..." th:value="${address}"/>
-            <button type="submit">Search</button>
-            <button type="submit">Clear</button>
-        </form>
-    </div>
-
 
 </head>
 <body>
 
-<center>
-<div class="container" style="width: 90%; margin: 0 auto; display: flex; gap: 15px">
 
+<div style="text-align: center">
+    <form th:action="@{/hospitals/search}" method="get" class="search-form">
+        <input class="search-input" type="text" name="name" placeholder="Search ..." th:value="${name}" />
+        <input class="search-input" type="text" name="address" placeholder="Address..." th:value="${address}" />
+        <button class="search-button" type="submit">Search</button>
+        <button class="search-button" type="button" onclick="window.location.href='/hospitals'">Clear</button>
+    </form>
+</div>
+
+
+<div class="container-card">
     <div class="card" style="width: 18rem;" th:each="hospital:${hospitals}">
         <a th:href="@{/hospitals/{hospitalId}/HospitalById(hospitalId=${hospital.getId()})}">
             <img th:src="${hospital.getImage()}" object-fit width="223" height="170px" class="card-img-top"
                  alt="Hospital image">
-
-            <!--      <img th:each="image : ${hospital.images}" th:src="${image}" object-fit width="223" height="170px" class="card-img-top" alt="Company's Image">-->
         </a>
 
-
         <div class="card-body">
-            <h5 class="card-title" style="text-align: center" th:text="${hospital.name}">Hospital</h5>
+            <h3 class="card-title" style="text-align: center" th:text="${hospital.name}">Hospital</h3>
             <p class="card-text" style="text-align: center" th:text="${hospital.address}">Address</p>
-
-
-
-<!--            <div style="display:flex;justify-content: space-between">-->
-<!--                <a th:href="@{/hospitals/update/{hospitalId}(hospitalId=${hospital.getId()})}">-->
-<!--                    <button style="width: 90px;"  class="btn btn-primary" type="submit">UPDATE</button>-->
-<!--                </a>-->
-
-<!--                <a th:href="@{/hospitals/delete/{hospitalId}(hospitalId=${hospital.id})}">-->
-<!--                    <button style="width: 90px;" class="btn btn-danger" type="submit">DELETE</button>-->
-<!--                </a>-->
-
-
-<!--                    <a th:href="@{/departments/{hospitalId} (hospitalId=${hospital.id})}">-->
-<!--                        <button style="width: 120px;"  class="btn btn-danger" type="submit">Departments</button>-->
-<!--                    </a>-->
-<!--            </div>-->
-
-
 
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <a th:href="@{/hospitals/update/{hospitalId}(hospitalId=${hospital.getId()})}">
-                    <button style="width: 90px;" class="btn btn-primary" type="submit">update</button>
+                    <button style="width: 90px;" class="btn btn-primary btn-animated" type="submit">Update</button>
                 </a>
 
                 <a th:href="@{/hospitals/delete/{hospitalId}(hospitalId=${hospital.id})}">
-                    <button style="width: 90px;" class="btn btn-danger" type="submit">delete</button>
+                    <button style="width: 90px;" class="btn btn-danger btn-animated" type="submit">Delete</button>
                 </a>
 
                 <a th:href="@{/departments/{hospitalId} (hospitalId=${hospital.id})}">
-                    <button style="width: 120px;" class="btn btn-danger" type="submit">departments</button>
+                    <button style="width: 120px;" class="btn btn-danger btn-animated" type="submit">Departments</button>
                 </a>
 
                 <a th:href="@{/patients/{hospitalId} (hospitalId=${hospital.id})}">
-                    <button style="width: 120px;" class="btn btn-danger" type="submit">patients</button>
+                    <button style="width: 120px;" class="btn btn-danger btn-animated" type="submit">Patients</button>
                 </a>
 
                 <a th:href="@{/doctors/{hospitalId} (hospitalId=${hospital.id})}">
-                    <button style="width: 120px;" class="btn btn-danger" type="submit">doctors</button>
+                    <button style="width: 120px;" class="btn btn-danger btn-animated" type="submit">Doctors</button>
                 </a>
 
                 <a th:href="@{/appointments/{hospitalId} (hospitalId=${hospital.id})}">
-                    <button style="width: 150px;" class="btn btn-danger" type="submit">appointments</button>
+                    <button style="width: 150px;" class="btn btn-danger btn-animated" type="submit">Appointments</button>
                 </a>
-
-
             </div>
-
-
-
-
-
         </div>
     </div>
 </div>
-<br>
-<br>
-<p style="text-align:center;">
-    <a class="btn btn-outline-primary" role="button" th:href="@{/hospitals/create}">Add new hospital</a></p>
 
-</center>
+<div class="add-hospital-button">
+    <a class="btn btn-outline-primary" role="button" th:href="@{/hospitals/create}">Add new hospital</a>
+</div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

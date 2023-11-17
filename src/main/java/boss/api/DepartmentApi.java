@@ -1,7 +1,9 @@
 package boss.api;
 
 import boss.entities.Department;
+import boss.entities.Doctor;
 import boss.service.DepartmentService;
+import boss.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import java.util.List;
 public class DepartmentApi {
 
     private final DepartmentService departmentService;
+    private final DoctorService doctorService;
 
 
     @GetMapping
@@ -72,5 +75,36 @@ public class DepartmentApi {
                             @PathVariable Long hospitalId){
         departmentService.deleteById(departmentId);
         return "redirect:/departments/"+hospitalId;
+    }
+
+    @GetMapping("/assign/{departmentId}")
+    public String assign(@PathVariable Long departmentId, Model model) {
+        model.addAttribute("doctors",doctorService.findAll());
+        model.addAttribute("departmentId",departmentId);
+        return "departments/assignDoctor";
+    }
+
+    @PostMapping("/accept/{departmentId}")
+    public String acceptAssign(@PathVariable Long departmentId,
+                               Long doctorId){
+        departmentService.assign(departmentId, doctorId);
+        return "redirect:/departments/"+departmentId;
+    }
+
+    @GetMapping("/doctorInDepartment/{departmentId}")
+    public String getDoctorFromDepartment(Model model,
+                                          @PathVariable Long hospitalId,
+                                          @PathVariable ("departmentId") Long departmentId) {
+        model.addAttribute("allDoctor", departmentService.getAllDoctorFromDepartment(departmentId));
+        model.addAttribute("hospitalIds", hospitalId);
+        return "departments/doctorsAll";
+    }
+
+
+    @GetMapping("/{hospitalId}/doctors/{departmentId}")
+    public String getDoctorsInDepartment(@PathVariable Long hospitalId,@PathVariable Long departmentId, Model model) {
+        List<Doctor> doctors = doctorService.getDoctorsByDepartmentId(departmentId);
+        model.addAttribute("doctors", doctors);
+        return "departments/doctors_in_department";
     }
 }

@@ -1,7 +1,7 @@
 package boss.api;
 
-import boss.entities.Department;
 import boss.entities.Doctor;
+import boss.entities.Patient;
 import boss.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,9 @@ public class DoctorApi {
 
   @GetMapping
     String findAll(Model model,
-                   @RequestParam(name = "firstName",required = false)String firstName,
-                   @RequestParam(name = "lastName",required = false)String lastName,
-                   @RequestParam(name = "position",required = false)String position,
-                   @RequestParam(name = "email",required = false)String email){
-      model.addAttribute("firstName",firstName);
-      model.addAttribute("lastName",lastName);
-      model.addAttribute("position",position);
-      model.addAttribute("email",email);
+                 @PathVariable Long hospitalId){
+    model.addAttribute("allDoctors",doctorService.getAllDoctors(hospitalId));
+    model.addAttribute("hospitalId",hospitalId);
       return "doctors/findAll";
   }
 
@@ -74,5 +69,16 @@ public class DoctorApi {
     return "redirect:/doctors/"+hospitalId;
   }
 
+
+  @GetMapping("/search")
+  public String searchDoctorByNameAndSurname(@RequestParam("firstName") String firstName,
+                               @RequestParam("lastName") String lastName,
+                               Model model) {
+    List<Doctor> doctors = doctorService.searchDoctorByNameAndSurname(firstName,lastName);
+    model.addAttribute("doctors", doctors);
+    model.addAttribute("firstName", firstName);
+    model.addAttribute("lastName",lastName);
+    return "doctors/findDoctorsByHospital";
+  }
 
 }

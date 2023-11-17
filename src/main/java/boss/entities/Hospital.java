@@ -26,6 +26,7 @@ public class Hospital {
     )
     private Long id;
 
+    @Column(length = 500)
     private String image;
     private String name;
 
@@ -38,6 +39,7 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Patient>patients;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "hospital",cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
@@ -70,5 +72,12 @@ public class Hospital {
        }else {
            doctors.add(doctor);
        }
+    }
+
+    @Override
+    public String toString() {
+        return " \nHospital " +
+                "\n'" + name + '\'' +
+                "\n'" + address + '\'';
     }
 }

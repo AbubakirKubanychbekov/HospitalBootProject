@@ -38,27 +38,27 @@
                 <form th:action="@{/doctors/edit/{doctorId}(doctorId=${doctorId})}"
                       th:object="${currentDoctor}" th:method="post">
                     <div class="mb-3">
-                        <label for="nameInput" class="form-label">Doctor firstName</label>
+                        <label for="nameInput" class="form-label">Doctor First Name</label>
                         <input type="text" th:field="*{firstName}" id="nameInput" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label for="imageInput" class="form-label">Doctor lastName</label>
+                        <label for="imageInput" class="form-label">Doctor Last Name</label>
                         <input type="text" th:field="*{lastName}" id="imageInput" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label for="position" class="form-label">Doctor position</label>
+                        <label for="position" class="form-label">Doctor Position</label>
                         <input type="text" th:field="*{position}" id="position" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label">Doctor lastName</label>
+                        <label for="email" class="form-label">Doctor Email</label>
                         <input type="text" th:field="*{email}" id="email" class="form-control">
                     </div>
 
                     <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Update saved</button>
+                        <button type="submit" class="btn btn-primary">Update Saved</button>
                         <form th:action="@{/doctors/{hospitalId}(hospitalId=${hospitalId})}" method="get">
                             <button type="submit" class="btn btn-secondary">Go Back</button>
                         </form>

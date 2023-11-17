@@ -20,10 +20,10 @@
 <body>
 <div class="container">
   <!-- Use a Thymeleaf loop to iterate over departments -->
-  <div class="card" style="width: 18rem;" th:each="doctor : ${doctor}">
+  <div class="card" style="width: 18rem;" th:each="doctor : ${allDoctors}">
     <div class="card-body">
       <!-- Use Thymeleaf text attribute to set the title -->
-      <h2 class="card-title" style="text-align: center" th:text="${doctor.name}">Doctor</h2>
+      <h2 class="card-title" style="text-align: center" th:text="${doctor.firstName}">Doctor</h2>
 
       <!-- Use Thymeleaf URL attribute for the department details link -->
       <a th:href="@{/doctors/{doctorId}/DoctorById(doctorId=${doctor.getId()})}">
@@ -32,7 +32,7 @@
 
       <div class="card-body">
         <!-- Use Thymeleaf text attribute for the title again -->
-        <h5 class="card-title" style="text-align: center" th:text="${doctor.name}">Department</h5>
+        <h5 class="card-title" style="text-align: center" th:text="${doctor.firstName}">Department</h5>
 
         <div style="display:flex;justify-content: space-between">
           <!-- Use Thymeleaf URL attribute for the update link -->

@@ -3,61 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Hospitals</title>
+
     <style>
+        body {
+            background-color: black; /* Set the background color to black */
+        }
+
         .container {
             width: 100%;
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
         }
+
+        /* ... Your existing CSS styles ... */
+
     </style>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
           crossorigin="anonymous">
-
-    <div style="text-align:center">
-        <form th:action=" @{/departments}" method="get"
-              style="display:flex; gap: 10px;  justify-content: space-around;width: 800px; margin: 40px 0 40px 250px;  align-items: center">
-            <input style="width: 250px" type="text" name="word" placeholder="Search ..." th:value="${word}"/>
-            <button type="submit">Search</button>
-            <button type="submit">Clear</button>
-        </form>
-    </div>
-
 </head>
-<body>
+<body  style="background-color: lightgoldenrodyellow;">
+
+<div style="text-align:center">
+    <form th:action="@{/departments}" method="get"
+          style="display:flex; gap: 10px;  justify-content: space-around;width: 800px; margin: 40px 0 40px 250px;  align-items: center">
+        <input style="width: 250px" type="text" name="word" placeholder="Search ..." th:value="${word}"/>
+        <button type="submit">Search</button>
+        <button type="submit">Clear</button>
+    </form>
+</div>
 
 <div class="container" style="width: 90%; margin: 0 auto; display: flex; gap: 15px">
-
     <div class="card" style="width: 18rem;" th:each="department:${departments}">
         <a th:href="@{/departments/{departmentId}/DepartmentById(departmentId=${department.getId()})}">
-            <!--            <img th:src="${hospital.getImage()}" object-fit width="223" height="170px" class="card-img-top"-->
-<!--            alt="Hospital image">-->
-            <!--      <img th:each="image : ${hospital.images}" th:src="${image}" object-fit width="223" height="170px" class="card-img-top" alt="Company's Image">-->
-
+            <img th:src="${department.getImage()}" object-fit width="223" height="170px" class="card-img-top"
+                 alt="department image">
         </a>
-
         <div class="card-body">
             <h5 class="card-title" style="text-align: center" th:text="${department.name}">Department</h5>
             <!--            <p class="card-text" style="text-align: center" th:text="${}">Address</p>-->
-
-
-            <div style="display:flex;justify-content: space-between">
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
                 <a th:href="@{/departments/update/{departmentId}(departmentId=${department.getId()})}">
-                    <button style="width: 100px" class="btn btn-primary" type="submit">UPDATE</button>
+                    <button style="width: 100px; white-space: normal;" class="btn btn-primary" type="submit">UPDATE</button>
                 </a>
-
                 <a th:href="@{'/departments/'+ ${hospitalId} +'/delete/' + ${department.getId()}}">
-                    <button style="width: 100px" class="btn btn-danger" type="submit">DELETE</button>
+                    <button style="width: 100px; white-space: normal;" class="btn btn-danger" type="submit">DELETE</button>
                 </a>
-
-
-                <!--                <a th:href="@{/departments/create/{hospitalId} (hospitalId=${hospital.id})}">-->
-                <!--                    <button style="width: 125px" class="btn btn-danger" type="submit">Departments</button>-->
+                <!--                <a th:href="@{/departments/{hospitalId}/doctorInDepartment/{departmentId}(hospitalId=${hospitalId},departmentId=${department.getId()})}">-->
+                <!--                    <button style="width: 100px; white-space: normal;" class="btn btn-danger" type="submit">Enter</button>-->
                 <!--                </a>-->
-
-
-
+                <!--                <a th:href="@{/department/{hospitalId}/doctorInDepartment/{departmentId}(hospitalId=${hospitalId}, departmentId=${department.id})}">-->
+                <!--                    <button class="btn btn-danger" type="button">Enter</button>-->
+                <!--                </a>-->
+                <a th:href="@{'/departments/' + ${hospitalId} + '/doctors/' + ${department.getId()}}">
+                    <button class="btn btn-danger" type="button">Doctors</button>
+                </a>
+                <a th:href="@{/departments/assign/{departmentId} (departmentId=${department.getId()})}">
+                    <button class="btn btn-danger" type="button">Assign</button>
+                </a>
             </div>
         </div>
     </div>
