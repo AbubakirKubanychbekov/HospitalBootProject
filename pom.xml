@@ -10,7 +10,7 @@
     </parent>
     <groupId>boss</groupId>
     <artifactId>HospitalBtask</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v1</version>
     <name>HospitalBtask</name>
     <description>HospitalBtask</description>
     <properties>

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,13 +48,12 @@ public class DepartmentService {
 
         departmentRepo.save(department);
 
-//        if (hospital.getDepartments() != null){
-//           hospital.getDepartments().add(department);
-//       }else {
-//            hospital.setDepartments(new ArrayList<>(List.of(department)));
-//        }
+        if (hospital.getDepartments() != null){
+           hospital.getDepartments().add(department);
+       }else {
+            hospital.setDepartments(new ArrayList<>(List.of(department)));
+        }
          hospitalRepo.save(hospital);
-
     }
 
     public Department findById(Long departmentId){

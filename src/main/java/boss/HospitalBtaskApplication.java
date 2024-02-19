@@ -10,5 +10,4 @@ public class HospitalBtaskApplication {
         SpringApplication.run(HospitalBtaskApplication.class, args);
         System.out.println("Boss your code successfully working...");
     }
-
 }

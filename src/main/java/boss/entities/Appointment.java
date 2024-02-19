@@ -9,22 +9,19 @@ import java.util.List;
 
 @Entity
 @Table(name = "appointments")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
 public class Appointment {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_gen"
-    )
-    @SequenceGenerator(
-            name = "user_gen",
-            sequenceName = "user_seq",
-            allocationSize = 1
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "appointment_gen")
+    @SequenceGenerator(name = "appointment_gen",
+            sequenceName = "appointment_seq",
+            allocationSize = 1)
     private Long id;
 
     private LocalDate dateTime;

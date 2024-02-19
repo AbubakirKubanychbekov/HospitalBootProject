@@ -7,21 +7,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "doctors")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Doctor {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_gen"
-    )
-    @SequenceGenerator(
-            name = "user_gen",
-            sequenceName = "user_seq",
-            allocationSize = 1
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "doctor_gen")
+    @SequenceGenerator(name = "doctor_gen",
+            sequenceName = "doctor_seq",
+            allocationSize = 1)
     private Long id;
 
     @Column(name = "first_name")
@@ -40,11 +37,11 @@ public class Doctor {
     private Hospital hospital;
 
     @ManyToMany
-    private List<Department>departments;
+    private List<Department> departments;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Appointment>appointments;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Appointment> appointments;
 
     @Override
     public String toString() {

@@ -9,7 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "hospitals")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -17,13 +18,10 @@ public class Hospital {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_gen"
-    )
-    @SequenceGenerator(
-            name = "user_gen",
-            sequenceName = "user_seq",
-            allocationSize = 1
-    )
+            generator = "hospital_gen")
+    @SequenceGenerator(name = "hospital_gen",
+            sequenceName = "hospital_seq",
+            allocationSize = 1)
     private Long id;
 
     @Column(length = 500)
@@ -33,25 +31,25 @@ public class Hospital {
     private String address;
 
     @OneToMany(mappedBy = "hospital")
-    private List<Doctor>doctors;
+    private List<Doctor> doctors;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "hospital",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Patient>patients;
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Patient> patients;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "hospital",cascade = {
+    @OneToMany(mappedBy = "hospital", cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST
-    },fetch = FetchType.EAGER)
-    private List<Department>departments;
+    }, fetch = FetchType.EAGER)
+    private List<Department> departments;
 
     @OneToMany
-    private List<Appointment>appointments;
+    private List<Appointment> appointments;
 
     public void addDepartment(Department department) {
-        if (departments == null){
+        if (departments == null) {
             departments = new ArrayList<>();
         } else {
             departments.add(department);
@@ -59,19 +57,19 @@ public class Hospital {
     }
 
     public void addPatient(Patient patient) {
-      if (patients == null){
-         patients=new ArrayList<>();
-      } else {
-         patients.add(patient);
-      }
+        if (patients == null) {
+            patients = new ArrayList<>();
+        } else {
+            patients.add(patient);
+        }
     }
 
     public void addDoctor(Doctor doctor) {
-       if (doctors == null){
-           doctors=new ArrayList<>();
-       }else {
-           doctors.add(doctor);
-       }
+        if (doctors == null) {
+            doctors = new ArrayList<>();
+        } else {
+            doctors.add(doctor);
+        }
     }
 
     @Override

@@ -10,21 +10,18 @@ import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "departments")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Department {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_gen"
-    )
-    @SequenceGenerator(
-            name = "user_gen",
-            sequenceName = "user_seq",
-            allocationSize = 1
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "department_gen")
+    @SequenceGenerator(name = "department_gen",
+            sequenceName = "department_seq",
+            allocationSize = 1)
     private Long id;
 
     @Column(name = "name")
@@ -33,15 +30,15 @@ public class Department {
     private String image;
 
     @ToString.Exclude
-    @ManyToMany(mappedBy = "departments",cascade = {
+    @ManyToMany(mappedBy = "departments", cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST
-    },fetch = FetchType.EAGER)
+    }, fetch = FetchType.EAGER)
     private List<Doctor> doctors;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {REFRESH,MERGE,PERSIST,DETACH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {REFRESH, MERGE, PERSIST, DETACH})
     private Hospital hospital;
 
     @Override

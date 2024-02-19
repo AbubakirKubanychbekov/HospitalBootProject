@@ -21,11 +21,11 @@ public class Patient {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_gen"
+            generator = "patient_gen"
     )
     @SequenceGenerator(
-            name = "user_gen",
-            sequenceName = "user_seq",
+            name = "patient_gen",
+            sequenceName = "patient_seq",
             allocationSize = 1
     )
     private Long id;
